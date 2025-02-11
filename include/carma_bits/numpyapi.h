@@ -66,7 +66,7 @@ struct npy_api {
     };
 
     static npy_api lookup() {
-        pybind11::module_ m = pybind11::detail::import_numpy_core_submodule("multiarray");
+        pybind11::module_ m = pybind11::module_::import("multiarray");
         auto c = m.attr("_ARRAY_API");
         void** api_ptr = (void**)PyCapsule_GetPointer(c.ptr(), nullptr);
         if (api_ptr == nullptr) {
